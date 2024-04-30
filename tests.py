@@ -100,6 +100,7 @@ class TestBooksCollector:
         collector = BooksCollector()
         lenght_name = "A" * 41
         collector.add_new_book(lenght_name)
+        assert lenght_name not in collector.get_books_genre()
         assert len(collector.get_books_genre()) == 0
 
 # 2-3. Метод set_book_genre. Проверяем установится ли жанр для добавленной книги
