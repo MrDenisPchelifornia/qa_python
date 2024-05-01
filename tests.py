@@ -145,22 +145,22 @@ class TestBooksCollector:
         collector.set_book_genre("Учебник Демидовича", "Ужасы")
         assert "Пикник на обочине" in collector.get_books_for_children()
         assert "Учебник Демидовича" not in collector.get_books_for_children()
+        assert len(collector.get_books_for_children()) == 1
 
 # 7. Метод add_book_in_favorites. Проверяем что книга добавилась в избранное
     def test_add_book_in_favorites_add_roadside_picnic_in_favorites(self):
         collector = BooksCollector()
         collector.add_new_book("Пикник на обочине")
         collector.add_book_in_favorites("Пикник на обочине")
-        assert "Пикник на обочине" in collector.favorites
+        assert "Пикник на обочине" in collector.get_list_of_favorites_books()
 
 # 8. Метод get_list_of_favorites_books. Проверяем что при запросе списка избранное возвращаются корректные книги
     def test_get_list_of_favorites_books_get_roadside_picnic_as_favorits(self):
         collector = BooksCollector()
         collector.add_new_book("Пикник на обочине")
         collector.add_book_in_favorites("Пикник на обочине")
-        favorites = collector.favorites
-        assert "Пикник на обочине" in favorites
-        assert len(favorites) == 1
+        assert "Пикник на обочине" in collector.get_list_of_favorites_books()
+        assert len(collector.get_list_of_favorites_books()) == 1
 
 # 9. Метод delete_book_from_favorites. Проверяем что избранная книга удаляется из списка избранных.
     def test_delete_book_from_favorites_del_roadside_picnic_from_favorite(self):
@@ -168,6 +168,6 @@ class TestBooksCollector:
         collector.add_new_book("Пикник на обочине")
         collector.add_book_in_favorites("Пикник на обочине")
         collector.delete_book_from_favorites("Пикник на обочине")
-        assert "Пикник на обочине" not in collector.favorites
+        assert "Пикник на обочине" not in collector.get_list_of_favorites_books()
 
 
