@@ -162,6 +162,23 @@ class TestBooksCollector:
         assert "Пикник на обочине" in collector.get_list_of_favorites_books()
         assert len(collector.get_list_of_favorites_books()) == 1
 
+# 8.1. Метод get_list_of_favorites_books. Проверяем что получаем пустой список если не добавленно книг.
+    def test_get_list_of_favorites_books_no_add_books_get_empty_list(self):
+        collector = BooksCollector()
+        assert collector.get_list_of_favorites_books() == []
+        assert len(collector.get_list_of_favorites_books()) == 0
+
+# 8.2. Метод get_list_of_favorites_books. Проверем на нескольких книгах что возвращает корректный список:
+    def test_get_list_of_favorites_books_add_three_books_and_get_same_books(self):
+        collector = BooksCollector()
+        collector.add_new_book("Пикник на обочине")
+        collector.add_book_in_favorites("Пикник на обочине")
+        collector.add_new_book("Сталкер")
+        collector.add_book_in_favorites("Сталкер")
+        collector.add_new_book("Отверженные")
+        collector.add_book_in_favorites("Отверженные")
+        assert collector.get_list_of_favorites_books() == ["Пикник на обочине", "Сталкер", "Отверженные"]
+
 # 9. Метод delete_book_from_favorites. Проверяем что избранная книга удаляется из списка избранных.
     def test_delete_book_from_favorites_del_roadside_picnic_from_favorite(self):
         collector = BooksCollector()
